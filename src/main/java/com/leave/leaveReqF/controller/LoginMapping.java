@@ -30,8 +30,7 @@ public class LoginMapping {
     @Autowired
     private DiscoveryClient discoveryClient;
     
-    @Autowired
-    private CheckSession checkSession;
+
 
     @GetMapping("/*")
     public String index() {
@@ -67,20 +66,10 @@ public class LoginMapping {
             Map<String,Object> result = restTemplate.postForObject(url, identity,
                     Map.class);
             session.setAttribute("idLogin", result.get("id"));
+            session.setAttribute("identity", result.get("identity"));
             return result;
         }
         return null;
-    }
-
-    @GetMapping("/profil")
-    public String profil(Model model, HttpSession session) {
-        if (session.getAttribute("idLogin") == null) {
-            return "redirect:/login";
-        }
-        model.addAttribute("iduser", session.getAttribute("idLogin"));
-        System.out.println(session.getAttribute("idLogin"));
-        
-        return "profil";
     }
 
     @GetMapping("/logout")
@@ -94,14 +83,5 @@ public class LoginMapping {
     }
     
 
-//    @RequestMapping(value = "/loginPost", method = RequestMethod.POST)
-//    public ResponseEntity loginState(LoginForm employee) {
-//        String id = employee.getId();
-//        String password = employee.getPassword();
-//        System.out.println(id);
-//        System.out.println(password);
-//        
-//        return ResponseEntity.ok(new LoginForm(id, password));      
-//
-//    }
+
 }

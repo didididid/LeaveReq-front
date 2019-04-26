@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -69,10 +69,12 @@
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <h3>Welcome, </h3>
-                    <h4 th:text="${iduser}"></h4> 
+                    <h4 th:text="${iduser}"></h4>
+                    
+                    <hr>
+                    <label>Name</label> : <span th:text="${identity.name}"></span><br>
+                    <label>Email</label> : <span th:text="${identity.email}"></span>
                 </main>
-                   
-
             </div>
         </div>
     </div>

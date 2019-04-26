@@ -3,6 +3,9 @@
     "attributes": {
         "th:text": {
             "context": "h4"
+        },
+        "th:each": {
+            "context": "tr"
         }
     }
 }
