@@ -5,15 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="dist/img/favicons/favicon.ico">
+        <link rel="icon" th:href="@{dist/img/favicons/favicon.ico}">
 
         <title>Profil User Leave Request</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <link th:href="@{dist/css/bootstrap.min.css}" rel="stylesheet"/>
 
         <!-- Custom styles for this template -->
-        <link href="dist/css/dashboard.css" rel="stylesheet">
+        <link th:href="@{dist/css/dashboard.css}" rel="stylesheet"/>
     </head>
 
     <body>
@@ -70,7 +70,7 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <h3>Welcome, </h3>
                     <h4 th:text="${iduser}"></h4>
-                    
+
                     <hr>
                     <label>Name</label> : <span th:text="${identity.name}"></span><br>
                     <label>Email</label> : <span th:text="${identity.email}"></span>
@@ -87,18 +87,44 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="dist/js/jquery-slim.min.js"><\/script>')</script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script src="dist/js/popper.min.js"></script>
-<script src="dist/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+<script th:src="@{dist/js/popper.min.js}"></script>
+<script th:src="@{dist/js/bootstrap.min.js}"></script>
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
 </script>
+<!--<script>
+    $(document).ready(function() {
+        
+        $.getJSON("/profils", function(result){
+            $("#nameuser").text(result.name);
+            $("#emailuser").text(result.email);
+          
+        });
+//        $.ajax({
+//            url: '/profils',
+//            type: 'POST',
+//            data: JSON.stringify(json),
+//            dataType: 'json',
+//            contentType: 'application/json',
+//            success: function (response) {
+//
+//            },
+//            error: function () {
+//                alert("Login Failed");
+//            }
+//        });
+//        $.getJSON("/profils", function(response){
+//            response.
+//          
+//        });
+
+    });
+</script>-->
 
 
 </body>

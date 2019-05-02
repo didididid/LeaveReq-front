@@ -8,8 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
+//import org.springframework.cloud.client.ServiceInstance;
+//import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +27,8 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class LoginMapping {
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
+//    @Autowired
+//    private DiscoveryClient discoveryClient;
     
 
 
@@ -52,15 +52,17 @@ public class LoginMapping {
             HttpSession session, HttpServletRequest request) {
         //mengakses back-leave
         Map<String, Object> identity = new HashMap<>();
-        System.out.println(data.get("id"));
+//        System.out.println(data.get("id"));
         identity.put("id", data.get("id"));
         identity.put("password", data.get("password"));
 
-        List<ServiceInstance> instances = discoveryClient.getInstances("back-leave");
-        if (instances != null && instances.size() > 0) {
-            ServiceInstance serviceInstance = instances.get(0);
-            String url = serviceInstance.getUri().toString();
-            url = url + "/loginState";
+//        List<ServiceInstance> instances = discoveryClient.getInstances("back-leave");
+        //kalo gak pake eureka atas dihilangkan
+//        if (instances != null && instances.size() > 0) {
+//            ServiceInstance serviceInstance = instances.get(0);
+//            String url = serviceInstance.getUri().toString();
+            //kalo gak pake eureka url= "http://localhost:8087/loginState"
+            String url = "http://localhost:8088/loginState";
             RestTemplate restTemplate = new RestTemplate();
             
             Map<String,Object> result = restTemplate.postForObject(url, identity,
@@ -68,8 +70,7 @@ public class LoginMapping {
             session.setAttribute("idLogin", result.get("id"));
             session.setAttribute("identity", result.get("identity"));
             return result;
-        }
-        return null;
+//        }
     }
 
     @GetMapping("/logout")
